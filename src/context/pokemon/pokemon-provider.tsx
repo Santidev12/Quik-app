@@ -1,7 +1,6 @@
 import { Slot, component$, useContextProvider, useStore, useVisibleTask$ } from "@builder.io/qwik";
 import { PokemonGameContext, PokemonGameState } from "./pokemon-game.context";
 import { PokemonListContext, PokemonListState } from "./pokemon-list.context";
-import { json } from "stream/consumers";
 
 export const PokemonProvider = component$(() => {
 

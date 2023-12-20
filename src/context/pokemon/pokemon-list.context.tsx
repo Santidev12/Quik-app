@@ -1,4 +1,4 @@
-import { createContextId, useContextProvider } from "@builder.io/qwik"
+import { createContextId } from "@builder.io/qwik"
 import { SmallPokemon } from "~/interfaces"
 
 export interface PokemonListState {

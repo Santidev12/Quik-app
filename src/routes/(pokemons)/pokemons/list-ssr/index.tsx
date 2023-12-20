@@ -1,11 +1,10 @@
 import { $, component$, useComputed$, useSignal, useStore, useVisibleTask$ } from '@builder.io/qwik';
 import { type DocumentHead, routeLoader$, useLocation, useNavigate } from '@builder.io/qwik-city';
-import { SlowBuffer } from 'buffer';
 import { PokemonImage } from '~/components/pokemon/pokemon-image';
 import { Modal } from '~/components/shared';
 import { chatGPTResponse } from '~/helpers/get-chatgpt-response';
 import { getSmallPokemons } from '~/helpers/get-small-pokemons';
-import type {  PokemonListResponse, SmallPokemon } from '~/interfaces';
+import type { SmallPokemon } from '~/interfaces';
 
 
 

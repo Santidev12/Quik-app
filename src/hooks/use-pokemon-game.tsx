@@ -23,7 +23,7 @@ export const usePokemonGame = () => {
         isPokemonVisible: useComputed$(() => pokemonGame.isPokemonVisible),
 
         nextPokemon: $(() => changePokemonId(+1)),
-        prevPokemon: $(() => changePokemonId(+1)),
+        prevPokemon: $(() => changePokemonId(-1)),
 
         toogleFromBack: toogleFromBack,
         toogleVisible: toogleVisible

@@ -7,7 +7,7 @@ const openai = new OpenAI({
 
 
 
-export const chatGPTResponse = async(pokemonName: string): Promise<string | null> => {
+export const chatGPTResponse = async(pokemonName: string): Promise<string> => {
 
 
     const response = await openai.chat.completions.create({
@@ -26,5 +26,5 @@ export const chatGPTResponse = async(pokemonName: string): Promise<string | null
     });
     console.log({response})
 
-    return response.choices[0].message.content;
+    return response.choices[0].message.content || `No trengo nada sobre ${ pokemonName }, lo siento`;
 }

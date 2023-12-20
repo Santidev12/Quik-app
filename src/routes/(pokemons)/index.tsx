@@ -1,6 +1,5 @@
-import { $, component$, useContext } from "@builder.io/qwik";
-import { Link, type DocumentHead, useNavigate, useContent } from "@builder.io/qwik-city";
-import { PokemonGameContext } from "~/context";
+import { $, component$ } from "@builder.io/qwik";
+import { type DocumentHead, useNavigate } from "@builder.io/qwik-city";
 import { PokemonImage } from "~/components/pokemon/pokemon-image";
 import { usePokemonGame } from "~/hooks/use-pokemon-game";
 
