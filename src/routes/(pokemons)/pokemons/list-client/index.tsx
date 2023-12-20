@@ -1,4 +1,4 @@
-import { $, component$, useContext, useOnDocument, useStore, useTask$, useVisibleTask$ } from '@builder.io/qwik';
+import { $, component$, useContext, useOnDocument, useTask$ } from '@builder.io/qwik';
 import { DocumentHead, } from '@builder.io/qwik-city';
 
 import { PokemonImage } from '~/components/pokemon/pokemon-image';
@@ -24,7 +24,7 @@ export default component$(() => {
 
   })
 
-  useOnDocument('scroll', $((event) => {
+  useOnDocument('scroll', $(() => {
     const maxScroll = document.body.scrollHeight;
     const currentScroll = window.scrollY + window.innerHeight
 

@@ -1,5 +1,5 @@
 import { $, component$, useComputed$, useSignal, useStore, useVisibleTask$ } from '@builder.io/qwik';
-import { type DocumentHead, routeLoader$, useLocation, useNavigate, Link } from '@builder.io/qwik-city';
+import { type DocumentHead, routeLoader$, useLocation, Link } from '@builder.io/qwik-city';
 import { PokemonImage } from '~/components/pokemon/pokemon-image';
 import { Modal } from '~/components/shared';
 import { chatGPTResponse } from '~/helpers/get-chatgpt-response';
@@ -12,8 +12,7 @@ export const usePokemonList = routeLoader$<SmallPokemon[]>(async({ query, redire
 
   const offset = Number( query.get('offset') ?? '0');
   if ( offset < 0 || isNaN(offset)) {
-    throw redirect(301, pathname)};
-
+    throw redirect(301, pathname)}
 
     return await getSmallPokemons(offset)
 })
@@ -25,7 +24,6 @@ export default component$(() => {
   const pokemons = usePokemonList();
   const location = useLocation();
   
-  const nav = useNavigate();
   const modalVisible = useSignal(false);
   const modalPokemon = useStore({
     id: '',
