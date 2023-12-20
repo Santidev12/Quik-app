@@ -1,5 +1,5 @@
 import { $, component$, useComputed$, useSignal, useStore, useVisibleTask$ } from '@builder.io/qwik';
-import { type DocumentHead, routeLoader$, useLocation, useNavigate } from '@builder.io/qwik-city';
+import { type DocumentHead, routeLoader$, useLocation, useNavigate, Link } from '@builder.io/qwik-city';
 import { PokemonImage } from '~/components/pokemon/pokemon-image';
 import { Modal } from '~/components/shared';
 import { chatGPTResponse } from '~/helpers/get-chatgpt-response';
@@ -47,22 +47,29 @@ export default component$(() => {
     modalVisible.value = false;
   })
 
-  const currentOffset = useComputed$<number>(() => 
-    Number(new URLSearchParams(location.url.search).get("offset") ?? "0")
-  );
+  // const currentOffset = useComputed$<number>(() => 
+  //   Number(new URLSearchParams(location.url.search).get("offset") ?? "0")
+  // );
 
-  const prevPage = $(() => {
-    if(currentOffset.value == 10){
-      nav("/pokemons/list-ssr/")
-    } else{
-      nav(`/pokemons/list-ssr/?offset=${currentOffset.value - 10}`)
-    }
+  // const prevPage = $(() => {
+  //   if(currentOffset.value == 10){
+  //     nav("/pokemons/list-ssr/")
+  //   } else{
+  //     nav(`/pokemons/list-ssr/?offset=${currentOffset.value - 10}`)
+  //   }
+  // })
+
+  // const nextPage = $(() => {
+  //   if(currentOffset.value == 1000) nav("/pokemons/list-ssr/");
+  //   else  nav(`/pokemons/list-ssr/?offset=${currentOffset.value + 10}`);
+  // })
+
+  const currentOffset = useComputed$<number>(() => {
+    // const offsetString = location.url.searchParams.get('offset');
+    const offsetString = new URLSearchParams( location.url.search );
+    return Number(offsetString.get('offset') || 0 );
   })
 
-  const nextPage = $(() => {
-    if(currentOffset.value == 1000) nav("/pokemons/list-ssr/");
-    else  nav(`/pokemons/list-ssr/?offset=${currentOffset.value + 10}`);
-  })
 
 
   useVisibleTask$(({ track }) =>{
@@ -87,19 +94,15 @@ export default component$(() => {
           </div> 
 
           <div class="mt-10">
-          <button 
-          class="btn btn-primary mr-2"
-          onClick$={prevPage}
-          disabled={currentOffset.value == 0}>
+          <Link href={ `/pokemons/list-ssr/?offset=${ currentOffset.value - 10 }` }
+           class="btn btn-primary mr-2">
               Anterior
-            </button>
+            </Link>
 
-            <button
-             class="btn btn-primary mr-2"
-             onClick$={nextPage}
-             >
-              Siguiente
-            </button>
+            <Link  href={ `/pokemons/list-ssr/?offset=${ currentOffset.value + 10 }` }
+          class="btn btn-primary mr-2">
+            Siguiente
+            </Link>
           </div>
 
           <div class="grid grid-cols-6 mt-5">

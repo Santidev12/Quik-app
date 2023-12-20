@@ -8,7 +8,7 @@ export const getSmallPokemons = async(offset: number = 0, limit: number = 10): P
     return data.results.map( ({ url, name }): SmallPokemon => {
 
         const segments = url.split('/');
-        const id = parseInt(segments.at(-2)!, 10);
+        const id = segments.at(-2)!;
 
         return { id, name }
     });
